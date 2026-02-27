@@ -373,6 +373,10 @@ body {
   border-top: none;
 }
 
+.results-table .human-expert td {
+  background: #fff8e1;
+}
+
 .results-table .delta-col {
   color: #5c7cba;
   font-size: 0.8rem;
