@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Ref-Adv: A Modern Referring Expression Benchmark for Visual Reasoning in MLLMs">
+  <meta name="keywords" content="Ref-Adv, Referring Expression Comprehension, REC, Visual Reasoning, MLLM, Benchmark">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ref-Adv: Exploring MLLM Visual Reasoning in Referring Expression Tasks</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+</head>
+<body>
+
+<!-- ======== 1. Navbar ======== -->
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div id="navMenu" class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="#introduction">Introduction</a>
+      <a class="navbar-item" href="#demo">Explore</a>
+      <a class="navbar-item" href="#results">Results</a>
+      <a class="navbar-item" href="#bibtex">BibTeX</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ======== 2. Hero ======== -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">
+            <span class="ref-adv"><span class="ref-color">Ref</span>-<span class="adv-color">Adv</span></span>
+          </h1>
+          <h2 class="subtitle is-3 publication-subtitle">
+            Exploring MLLM Visual Reasoning in Referring Expression Tasks
+          </h2>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><a href="https://dddraxxx.github.io/" target="_blank">Qihua Dong</a>,</span>
+            <span class="author-block"><a href="https://www.kuoyang1999.com/" target="_blank">Kuo Yang</a>,</span>
+            <span class="author-block"><a href="https://openreview.net/profile?id=~Lin_Ju2" target="_blank">Lin Ju</a>,</span>
+            <span class="author-block"><a href="https://hdzhao.github.io/" target="_blank">Handong Zhao</a>,</span>
+            <span class="author-block"><a href="https://bespontaneous.github.io/homepage/" target="_blank">Yitian Zhang</a>,</span>
+            <span class="author-block"><a href="https://wyzjack.github.io/" target="_blank">Yizhou Wang</a>,</span>
+            <br>
+            <span class="author-block"><a href="https://zeldam1.github.io/" target="_blank">Huimin Zeng</a>,</span>
+            <span class="author-block"><a href="https://jianglin954.github.io/" target="_blank">Jianglin Lu</a>,</span>
+            <span class="author-block"><a href="http://www1.ece.neu.edu/~yunfu/" target="_blank">Yun Fu</a></span>
+          </div>
+          <div class="is-size-5 publication-affiliation">
+            Northeastern University
+          </div>
+          <div class="publication-venue"><b>ICLR 2026</b></div>
+
+          <!-- Action buttons -->
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a class="button is-normal is-rounded is-dark" href="#" target="_blank">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a class="button is-normal is-rounded is-dark" href="https://huggingface.co/datasets/dddraxxx/ref_adv" target="_blank">
+                  <span class="icon"><i class="fa-solid fa-database"></i></span>
+                  <span>Dataset</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a class="button is-normal is-rounded is-dark" href="https://github.com/dddraxxx/ref_adv_codex" target="_blank">
+                  <span class="icon"><i class="fa-brands fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== 3. Teaser ======== -->
+<section class="section" style="padding-top: 0rem; padding-bottom: 0;">
+  <div class="container is-max-widescreen">
+    <div class="has-text-centered">
+      <img src="./static/images/teaser.png" alt="Limitations of classic REC benchmarks" style="width: 90%; max-width: 900px; border-radius: 6px;">
+      <p class="is-size-6" style="margin-top: 0.8rem; max-width: 860px; margin-left: auto; margin-right: auto; color: #333;">
+        Standard REC benchmarks allow models to take shortcuts via the above issues.
+        <span class="ref-adv">Ref-Adv</span> addresses these by pairing complex referring expressions with hard visual distractors.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ======== 4. Introduction ======== -->
+<section class="section" id="introduction">
+  <div class="container is-max-widescreen">
+    <h2 class="title is-3 has-text-centered section-title">Introduction</h2>
+    <div class="content">
+      <p>
+        <b>Referring Expression Comprehension (REC)</b> links natural language to region-level visual perception&mdash;given an image and a text expression, the task is to localize the described object. Standard benchmarks such as RefCOCO, RefCOCO+, and RefCOCOg have driven years of progress, yet they harbor critical shortcuts:
+      </p>
+      <ol>
+        <li><b>Expressions are too short</b> (avg. ~3 words), leaving little reasoning demand.</li>
+        <li><b>Few visual distractors</b> make the target easy to find by elimination.</li>
+        <li><b>Redundant descriptors</b> let models latch onto a single cue and ignore the rest.</li>
+      </ol>
+      <p>
+        <span class="ref-adv">Ref-Adv</span> is a modern REC benchmark designed to suppress these shortcuts.
+        Every referring expression is paired with <em>only the information necessary</em> to uniquely identify the target among hard visual distractors.
+        The dataset features an average expression length of <b>11.5 words</b>, <b>4.01 distractors per image</b> (each case contains at least 2 distractors), and a <b>21.25% negation ratio</b>—substantially surpassing existing benchmarks in both linguistic and visual complexity.
+      </p>
+      <p>
+        We open source <b>Ref-Adv-s</b> with <b>1,142 cases</b>, and have reproducible results with code on <b>Qwen2.5-3.5 VL series models</b>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ======== 4. Demo ======== -->
+<section class="section" id="demo">
+  <div class="container is-max-widescreen">
+    <h2 class="title is-3 has-text-centered section-title">Explore</h2>
+    <p class="subtitle is-6" style="margin-bottom: 1rem;">
+      Ref-Adv pairs complex referring expressions with hard visual distractors. Browse examples below, or try the interactive challenge.
+    </p>
+
+    <!-- Mode toggle -->
+    <div class="tabs is-centered is-toggle is-small" style="margin-bottom: 1.2rem;">
+      <ul>
+        <li class="is-active" id="tab-gallery"><a>Gallery</a></li>
+        <li id="tab-challenge"><a>Challenge</a></li>
+      </ul>
+    </div>
+
+    <!-- ── Gallery mode: fixed 2x3 grid ── -->
+    <div id="mode-gallery">
+      <div class="has-text-centered" style="margin-bottom: 0.6rem;">
+        <button class="button is-rounded is-light" id="btn-gallery-reveal">
+          <span class="icon"><i class="fa-solid fa-eye"></i></span>
+          <span>Reveal Ground Truth</span>
+        </button>
+      </div>
+      <div class="gallery-grid-wrap">
+        <div class="columns is-multiline is-variable is-2" id="gallery-grid">
+          <!-- 6 curated cells injected by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Challenge mode: 5 images, side arrows ── -->
+    <div id="mode-challenge" style="display:none;">
+      <!-- Progress dots -->
+      <div class="has-text-centered" style="margin-bottom: 0.8rem;">
+        <div id="challenge-dots" class="challenge-dots"></div>
+      </div>
+      <!-- Carousel with side arrows -->
+      <div class="challenge-carousel">
+        <button class="challenge-arrow challenge-arrow-left" id="btn-challenge-prev">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <div class="challenge-main">
+          <div class="demo-card" id="challenge-card">
+            <div class="demo-card-image" id="challenge-img-area">
+              <img id="challenge-img" src="" alt="Challenge image">
+            </div>
+            <div class="demo-card-body">
+              <p class="demo-caption" id="challenge-caption" style="font-size: 1.05rem;"></p>
+              <div class="demo-tags" id="challenge-tags"></div>
+            </div>
+            <div class="demo-card-actions">
+              <span class="demo-result pending" id="challenge-result">Click on the target</span>
+              <button class="button is-small is-rounded is-light" id="btn-challenge-reveal">Reveal</button>
+            </div>
+          </div>
+        </div>
+        <button class="challenge-arrow challenge-arrow-right" id="btn-challenge-next">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+      <!-- New Round button (always visible) + Score (shown after completion) -->
+      <div class="has-text-centered" style="margin-top: 1rem;">
+        <p class="title is-4" id="challenge-score" style="display:none;"></p>
+        <button class="button is-rounded is-small is-info" id="btn-challenge-new">
+          <span class="icon"><i class="fa-solid fa-shuffle"></i></span>
+          <span>New Round</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======== Results ======== -->
+<section class="section" id="results">
+  <div class="container is-max-widescreen">
+    <h2 class="title is-3 has-text-centered section-title">Results on Ref-Adv-s</h2>
+    <p class="subtitle is-6" style="margin-bottom: 1.2rem;">
+      <b>Ref-Adv-s</b> is a publicly released subset of 1,142 cases with evaluation code.
+      We report Acc@IoU thresholds and per-distractor-group accuracy (with delta vs. overall Acc@0.5).
+      <b>Bold</b> = best in group.
+    </p>
+    <div class="table-container">
+      <table class="table is-hoverable is-fullwidth results-table">
+        <thead>
+          <tr>
+            <th rowspan="2">Model</th>
+            <th rowspan="2" class="has-text-centered">CoT</th>
+            <th colspan="3" class="has-text-centered">Accuracy</th>
+            <th colspan="6" class="has-text-centered col-sep">Distractors (Acc@0.5)</th>
+          </tr>
+          <tr>
+            <th class="has-text-centered">@0.5</th>
+            <th class="has-text-centered">@0.75</th>
+            <th class="has-text-centered">@0.9</th>
+            <th class="has-text-centered col-sep">2-3</th>
+            <th class="has-text-centered delta-col">&Delta;</th>
+            <th class="has-text-centered">4-6</th>
+            <th class="has-text-centered delta-col">&Delta;</th>
+            <th class="has-text-centered">&ge;7</th>
+            <th class="has-text-centered delta-col">&Delta;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Human Expert -->
+          <tr>
+            <td>Human Expert (High)</td><td class="has-text-centered">&mdash;</td>
+            <td class="has-text-centered">90.3</td><td class="has-text-centered">&mdash;</td><td class="has-text-centered">&mdash;</td>
+            <td class="has-text-centered col-sep">&mdash;</td><td class="has-text-centered delta-col">&mdash;</td>
+            <td class="has-text-centered">&mdash;</td><td class="has-text-centered delta-col">&mdash;</td>
+            <td class="has-text-centered">&mdash;</td><td class="has-text-centered delta-col">&mdash;</td>
+          </tr>
+          <tr>
+            <td>Human Expert (Medium)</td><td class="has-text-centered">&mdash;</td>
+            <td class="has-text-centered">80.6</td><td class="has-text-centered">&mdash;</td><td class="has-text-centered">&mdash;</td>
+            <td class="has-text-centered col-sep">&mdash;</td><td class="has-text-centered delta-col">&mdash;</td>
+            <td class="has-text-centered">&mdash;</td><td class="has-text-centered delta-col">&mdash;</td>
+            <td class="has-text-centered">&mdash;</td><td class="has-text-centered delta-col">&mdash;</td>
+          </tr>
+          <!-- Qwen2.5-VL -->
+          <tr class="group-header"><td colspan="11"><em>Qwen2.5-VL</em></td></tr>
+          <tr>
+            <td>3B-Instruct</td><td class="has-text-centered"></td>
+            <td class="has-text-centered">23.8</td><td class="has-text-centered">18.1</td><td class="has-text-centered">8.8</td>
+            <td class="has-text-centered col-sep">25.9</td><td class="has-text-centered delta-col">+2.1</td>
+            <td class="has-text-centered">21.9</td><td class="has-text-centered delta-col">-1.9</td>
+            <td class="has-text-centered">17.1</td><td class="has-text-centered delta-col">-6.8</td>
+          </tr>
+          <tr>
+            <td>3B-Instruct</td><td class="has-text-centered">&check;</td>
+            <td class="has-text-centered">25.3</td><td class="has-text-centered">19.1</td><td class="has-text-centered">9.5</td>
+            <td class="has-text-centered col-sep">28.2</td><td class="has-text-centered delta-col">+2.9</td>
+            <td class="has-text-centered">22.9</td><td class="has-text-centered delta-col">-2.4</td>
+            <td class="has-text-centered">15.5</td><td class="has-text-centered delta-col">-9.8</td>
+          </tr>
+          <tr>
+            <td>7B-Instruct</td><td class="has-text-centered"></td>
+            <td class="has-text-centered">39.3</td><td class="has-text-centered">29.2</td><td class="has-text-centered">12.5</td>
+            <td class="has-text-centered col-sep">42.8</td><td class="has-text-centered delta-col">+3.5</td>
+            <td class="has-text-centered">36.8</td><td class="has-text-centered delta-col">-2.5</td>
+            <td class="has-text-centered">26.4</td><td class="has-text-centered delta-col">-13.0</td>
+          </tr>
+          <tr>
+            <td>7B-Instruct</td><td class="has-text-centered">&check;</td>
+            <td class="has-text-centered">39.0</td><td class="has-text-centered">28.8</td><td class="has-text-centered">11.6</td>
+            <td class="has-text-centered col-sep">43.0</td><td class="has-text-centered delta-col">+4.0</td>
+            <td class="has-text-centered">35.2</td><td class="has-text-centered delta-col">-3.7</td>
+            <td class="has-text-centered">26.4</td><td class="has-text-centered delta-col">-12.6</td>
+          </tr>
+          <tr>
+            <td>32B-Instruct</td><td class="has-text-centered"></td>
+            <td class="has-text-centered">48.0</td><td class="has-text-centered">35.5</td><td class="has-text-centered">16.0</td>
+            <td class="has-text-centered col-sep">51.6</td><td class="has-text-centered delta-col">+3.6</td>
+            <td class="has-text-centered">43.8</td><td class="has-text-centered delta-col">-4.2</td>
+            <td class="has-text-centered">38.8</td><td class="has-text-centered delta-col">-9.2</td>
+          </tr>
+          <tr>
+            <td>32B-Instruct</td><td class="has-text-centered">&check;</td>
+            <td class="has-text-centered">50.6</td><td class="has-text-centered">37.7</td><td class="has-text-centered">16.0</td>
+            <td class="has-text-centered col-sep">55.2</td><td class="has-text-centered delta-col">+4.5</td>
+            <td class="has-text-centered">44.8</td><td class="has-text-centered delta-col">-5.9</td>
+            <td class="has-text-centered">40.3</td><td class="has-text-centered delta-col">-10.3</td>
+          </tr>
+          <tr>
+            <td>72B-Instruct</td><td class="has-text-centered"></td>
+            <td class="has-text-centered"><b>54.0</b></td><td class="has-text-centered"><b>40.1</b></td><td class="has-text-centered">18.0</td>
+            <td class="has-text-centered col-sep"><b>57.0</b></td><td class="has-text-centered delta-col">+3.0</td>
+            <td class="has-text-centered"><b>52.7</b></td><td class="has-text-centered delta-col">-1.3</td>
+            <td class="has-text-centered"><b>41.1</b></td><td class="has-text-centered delta-col">-12.9</td>
+          </tr>
+          <tr>
+            <td>72B-Instruct</td><td class="has-text-centered">&check;</td>
+            <td class="has-text-centered">52.4</td><td class="has-text-centered">39.0</td><td class="has-text-centered"><b>18.3</b></td>
+            <td class="has-text-centered col-sep">56.9</td><td class="has-text-centered delta-col">+4.5</td>
+            <td class="has-text-centered">47.9</td><td class="has-text-centered delta-col">-4.4</td>
+            <td class="has-text-centered">38.8</td><td class="has-text-centered delta-col">-13.6</td>
+          </tr>
+          <!-- Qwen3-VL -->
+          <tr class="group-header"><td colspan="11"><em>Qwen3-VL</em></td></tr>
+          <tr>
+            <td>2B-Instruct</td><td class="has-text-centered"></td>
+            <td class="has-text-centered">23.5</td><td class="has-text-centered">19.2</td><td class="has-text-centered">11.0</td>
+            <td class="has-text-centered col-sep">26.1</td><td class="has-text-centered delta-col">+2.6</td>
+            <td class="has-text-centered">20.0</td><td class="has-text-centered delta-col">-3.5</td>
+            <td class="has-text-centered">17.8</td><td class="has-text-centered delta-col">-5.6</td>
+          </tr>
+          <tr>
+            <td>2B-Instruct</td><td class="has-text-centered">&check;</td>
+            <td class="has-text-centered">25.2</td><td class="has-text-centered">20.6</td><td class="has-text-centered">11.4</td>
+            <td class="has-text-centered col-sep">28.1</td><td class="has-text-centered delta-col">+2.9</td>
+            <td class="has-text-centered">21.3</td><td class="has-text-centered delta-col">-3.9</td>
+            <td class="has-text-centered">19.4</td><td class="has-text-centered delta-col">-5.8</td>
+          </tr>
+          <tr>
+            <td>2B-Thinking</td><td class="has-text-centered">&check;</td>
+            <td class="has-text-centered">44.4</td><td class="has-text-centered">36.8</td><td class="has-text-centered">21.8</td>
+            <td class="has-text-centered col-sep">48.6</td><td class="has-text-centered delta-col">+4.2</td>
+            <td class="has-text-centered">40.6</td><td class="has-text-centered delta-col">-3.8</td>
+            <td class="has-text-centered">31.0</td><td class="has-text-centered delta-col">-13.4</td>
+          </tr>
+          <tr>
+            <td>4B-Instruct</td><td class="has-text-centered"></td>
+            <td class="has-text-centered">41.9</td><td class="has-text-centered">34.9</td><td class="has-text-centered">20.7</td>
+            <td class="has-text-centered col-sep">46.4</td><td class="has-text-centered delta-col">+4.5</td>
+            <td class="has-text-centered">36.2</td><td class="has-text-centered delta-col">-5.8</td>
+            <td class="has-text-centered">31.8</td><td class="has-text-centered delta-col">-10.2</td>
+          </tr>
+          <tr>
+            <td>4B-Instruct</td><td class="has-text-centered">&check;</td>
+            <td class="has-text-centered">42.5</td><td class="has-text-centered">34.9</td><td class="has-text-centered">20.6</td>
+            <td class="has-text-centered col-sep">46.6</td><td class="has-text-centered delta-col">+4.1</td>
+            <td class="has-text-centered">36.5</td><td class="has-text-centered delta-col">-6.0</td>
+            <td class="has-text-centered">34.9</td><td class="has-text-centered delta-col">-7.6</td>
+          </tr>
+          <tr>
+            <td>4B-Thinking</td><td class="has-text-centered">&check;</td>
+            <td class="has-text-centered">57.6</td><td class="has-text-centered">45.5</td><td class="has-text-centered">27.8</td>
+            <td class="has-text-centered col-sep">63.0</td><td class="has-text-centered delta-col">+5.4</td>
+            <td class="has-text-centered">52.7</td><td class="has-text-centered delta-col">-4.9</td>
+            <td class="has-text-centered">40.3</td><td class="has-text-centered delta-col">-17.3</td>
+          </tr>
+          <tr>
+            <td>8B-Instruct</td><td class="has-text-centered"></td>
+            <td class="has-text-centered">47.2</td><td class="has-text-centered">37.0</td><td class="has-text-centered">19.1</td>
+            <td class="has-text-centered col-sep">51.3</td><td class="has-text-centered delta-col">+4.1</td>
+            <td class="has-text-centered">44.1</td><td class="has-text-centered delta-col">-3.1</td>
+            <td class="has-text-centered">32.6</td><td class="has-text-centered delta-col">-14.6</td>
+          </tr>
+          <tr>
+            <td>8B-Instruct</td><td class="has-text-centered">&check;</td>
+            <td class="has-text-centered">52.3</td><td class="has-text-centered">38.9</td><td class="has-text-centered">19.9</td>
+            <td class="has-text-centered col-sep">55.7</td><td class="has-text-centered delta-col">+3.5</td>
+            <td class="has-text-centered">50.2</td><td class="has-text-centered delta-col">-2.1</td>
+            <td class="has-text-centered">38.8</td><td class="has-text-centered delta-col">-13.5</td>
+          </tr>
+          <tr>
+            <td>8B-Thinking</td><td class="has-text-centered">&check;</td>
+            <td class="has-text-centered">59.5</td><td class="has-text-centered">48.2</td><td class="has-text-centered">27.3</td>
+            <td class="has-text-centered col-sep">63.5</td><td class="has-text-centered delta-col">+4.0</td>
+            <td class="has-text-centered">55.6</td><td class="has-text-centered delta-col">-3.9</td>
+            <td class="has-text-centered">47.3</td><td class="has-text-centered delta-col">-12.2</td>
+          </tr>
+          <tr>
+            <td>30B-A3B-Instruct</td><td class="has-text-centered"></td>
+            <td class="has-text-centered">44.0</td><td class="has-text-centered">37.6</td><td class="has-text-centered">23.4</td>
+            <td class="has-text-centered col-sep">47.6</td><td class="has-text-centered delta-col">+3.5</td>
+            <td class="has-text-centered">40.3</td><td class="has-text-centered delta-col">-3.7</td>
+            <td class="has-text-centered">34.1</td><td class="has-text-centered delta-col">-9.9</td>
+          </tr>
+          <tr>
+            <td>30B-A3B-Instruct</td><td class="has-text-centered">&check;</td>
+            <td class="has-text-centered">52.1</td><td class="has-text-centered">43.1</td><td class="has-text-centered">27.4</td>
+            <td class="has-text-centered col-sep">54.7</td><td class="has-text-centered delta-col">+2.6</td>
+            <td class="has-text-centered">48.9</td><td class="has-text-centered delta-col">-3.2</td>
+            <td class="has-text-centered">45.7</td><td class="has-text-centered delta-col">-6.4</td>
+          </tr>
+          <tr>
+            <td>30B-A3B-Thinking</td><td class="has-text-centered">&check;</td>
+            <td class="has-text-centered">64.1</td><td class="has-text-centered">52.6</td><td class="has-text-centered">31.6</td>
+            <td class="has-text-centered col-sep">67.3</td><td class="has-text-centered delta-col">+3.2</td>
+            <td class="has-text-centered">62.2</td><td class="has-text-centered delta-col">-1.9</td>
+            <td class="has-text-centered">51.2</td><td class="has-text-centered delta-col">-12.9</td>
+          </tr>
+          <tr>
+            <td>32B-Instruct</td><td class="has-text-centered"></td>
+            <td class="has-text-centered">53.4</td><td class="has-text-centered">44.7</td><td class="has-text-centered">27.1</td>
+            <td class="has-text-centered col-sep">56.3</td><td class="has-text-centered delta-col">+2.9</td>
+            <td class="has-text-centered">50.2</td><td class="has-text-centered delta-col">-3.3</td>
+            <td class="has-text-centered">45.7</td><td class="has-text-centered delta-col">-7.7</td>
+          </tr>
+          <tr>
+            <td>32B-Instruct</td><td class="has-text-centered">&check;</td>
+            <td class="has-text-centered">59.0</td><td class="has-text-centered">47.5</td><td class="has-text-centered">27.6</td>
+            <td class="has-text-centered col-sep">60.9</td><td class="has-text-centered delta-col">+1.9</td>
+            <td class="has-text-centered">57.5</td><td class="has-text-centered delta-col">-1.6</td>
+            <td class="has-text-centered">52.7</td><td class="has-text-centered delta-col">-6.3</td>
+          </tr>
+          <tr>
+            <td>32B-Thinking</td><td class="has-text-centered">&check;</td>
+            <td class="has-text-centered">65.6</td><td class="has-text-centered">52.8</td><td class="has-text-centered">31.6</td>
+            <td class="has-text-centered col-sep">67.9</td><td class="has-text-centered delta-col">+2.3</td>
+            <td class="has-text-centered"><b>65.7</b></td><td class="has-text-centered delta-col">+0.1</td>
+            <td class="has-text-centered">52.7</td><td class="has-text-centered delta-col">-12.9</td>
+          </tr>
+          <tr>
+            <td>235B-A22B-Instruct</td><td class="has-text-centered"></td>
+            <td class="has-text-centered">57.3</td><td class="has-text-centered">47.5</td><td class="has-text-centered">30.0</td>
+            <td class="has-text-centered col-sep">63.3</td><td class="has-text-centered delta-col">+6.1</td>
+            <td class="has-text-centered">51.7</td><td class="has-text-centered delta-col">-5.5</td>
+            <td class="has-text-centered">38.0</td><td class="has-text-centered delta-col">-19.3</td>
+          </tr>
+          <tr>
+            <td>235B-A22B-Instruct</td><td class="has-text-centered">&check;</td>
+            <td class="has-text-centered">59.3</td><td class="has-text-centered">48.9</td><td class="has-text-centered">29.9</td>
+            <td class="has-text-centered col-sep">63.5</td><td class="has-text-centered delta-col">+4.2</td>
+            <td class="has-text-centered">54.9</td><td class="has-text-centered delta-col">-4.4</td>
+            <td class="has-text-centered">47.3</td><td class="has-text-centered delta-col">-12.0</td>
+          </tr>
+          <tr>
+            <td>235B-A22B-Thinking</td><td class="has-text-centered">&check;</td>
+            <td class="has-text-centered"><b>67.1</b></td><td class="has-text-centered"><b>53.6</b></td><td class="has-text-centered"><b>31.8</b></td>
+            <td class="has-text-centered col-sep"><b>69.6</b></td><td class="has-text-centered delta-col">+2.6</td>
+            <td class="has-text-centered"><b>65.7</b></td><td class="has-text-centered delta-col">-1.4</td>
+            <td class="has-text-centered"><b>56.6</b></td><td class="has-text-centered delta-col">-10.5</td>
+          </tr>
+          <!-- Qwen3.5 -->
+          <tr class="group-header"><td colspan="11"><em>Qwen3.5</em></td></tr>
+          <tr>
+            <td>27B</td><td class="has-text-centered">&check;</td>
+            <td class="has-text-centered">67.3</td><td class="has-text-centered">54.9</td><td class="has-text-centered">32.7</td>
+            <td class="has-text-centered col-sep">69.9</td><td class="has-text-centered delta-col">+2.7</td>
+            <td class="has-text-centered">65.7</td><td class="has-text-centered delta-col">-1.5</td>
+            <td class="has-text-centered">56.6</td><td class="has-text-centered delta-col">-10.7</td>
+          </tr>
+          <tr>
+            <td>35B-A3B</td><td class="has-text-centered">&check;</td>
+            <td class="has-text-centered">66.7</td><td class="has-text-centered">54.4</td><td class="has-text-centered">34.9</td>
+            <td class="has-text-centered col-sep">68.9</td><td class="has-text-centered delta-col">+2.2</td>
+            <td class="has-text-centered">65.4</td><td class="has-text-centered delta-col">-1.3</td>
+            <td class="has-text-centered"><b>58.1</b></td><td class="has-text-centered delta-col">-8.6</td>
+          </tr>
+          <tr>
+            <td>122B-A10B</td><td class="has-text-centered">&check;</td>
+            <td class="has-text-centered">67.2</td><td class="has-text-centered">55.0</td><td class="has-text-centered"><b>35.1</b></td>
+            <td class="has-text-centered col-sep">69.9</td><td class="has-text-centered delta-col">+2.8</td>
+            <td class="has-text-centered">66.3</td><td class="has-text-centered delta-col">-0.8</td>
+            <td class="has-text-centered">54.3</td><td class="has-text-centered delta-col">-12.9</td>
+          </tr>
+          <tr>
+            <td>397B-A17B-FP8</td><td class="has-text-centered">&check;</td>
+            <td class="has-text-centered"><b>68.0</b></td><td class="has-text-centered"><b>55.6</b></td><td class="has-text-centered">34.2</td>
+            <td class="has-text-centered col-sep"><b>70.1</b></td><td class="has-text-centered delta-col">+2.1</td>
+            <td class="has-text-centered"><b>67.9</b></td><td class="has-text-centered delta-col">-0.0</td>
+            <td class="has-text-centered">56.6</td><td class="has-text-centered delta-col">-11.4</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ======== BibTeX ======== -->
+<section class="section" id="bibtex">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered section-title">BibTeX</h2>
+    <pre style="background: #f5f5f5; padding: 1.5rem; border-radius: 8px; overflow-x: auto; font-size: 0.9rem;"><code>@inproceedings{
+    dong2026refadv,
+    title={Ref-Adv: Exploring {MLLM} Visual Reasoning in Referring Expression Tasks},
+    author={Qihua Dong and Kuo Yang and Lin Ju and Handong Zhao and Yitian Zhang and Yizhou Wang and Huimin Zeng and Jianglin Lu and Yun Fu},
+    booktitle={The Fourteenth International Conference on Learning Representations},
+    year={2026},
+    url={https://openreview.net/forum?id=iEBgrepR9i}
+}</code></pre>
+  </div>
+</section>
+
+<!-- ======== Footer ======== -->
+<footer class="footer" style="padding: 2rem 1.5rem;">
+  <div class="container is-max-desktop">
+    <div class="content has-text-centered" style="color: #999; font-size: 0.85rem;">
+      <p>
+        This website is adapted from
+        <a href="https://nerfies.github.io" style="color: #7c7ce0;">Nerfies</a>,
+        <a href="https://mathvista.github.io" style="color: #7c7ce0;">MathVista</a>, and
+        <a href="https://mmmu-benchmark.github.io" style="color: #7c7ce0;">MMMU</a>.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="./static/js/demo.js"></script>
+</body>
+</html>

@@ -1,0 +1,684 @@
+[
+  {
+    "image": "static/images/demo/0000.jpg",
+    "caption": "the computer screen that is in the middle vertically of the three stacks",
+    "bbox": [
+      297.0,
+      345.0,
+      427.0,
+      440.0
+    ],
+    "norm_bbox": [
+      464,
+      719,
+      667,
+      917
+    ],
+    "width": 640,
+    "height": 480,
+    "distractors": "5",
+    "negation": false,
+    "human_authored": true,
+    "source": "coco_val2017"
+  },
+  {
+    "image": "static/images/demo/0001.jpg",
+    "caption": "background person not leaning back",
+    "bbox": [
+      20.0,
+      98.0,
+      70.0,
+      149.0
+    ],
+    "norm_bbox": [
+      40,
+      294,
+      140,
+      447
+    ],
+    "width": 500,
+    "height": 333,
+    "distractors": "5",
+    "negation": true,
+    "human_authored": true,
+    "source": "coco_val2017"
+  },
+  {
+    "image": "static/images/demo/0003.jpg",
+    "caption": "the woman looking at an apple laptop without glasses",
+    "bbox": [
+      1.0,
+      93.0,
+      114.0,
+      213.0
+    ],
+    "norm_bbox": [
+      2,
+      194,
+      178,
+      444
+    ],
+    "width": 640,
+    "height": 480,
+    "distractors": "4",
+    "negation": true,
+    "human_authored": true,
+    "source": "coco_val2017"
+  },
+  {
+    "image": "static/images/demo/0005.jpg",
+    "caption": "the person sitting closer to the one holding a goose feather",
+    "bbox": [
+      0.0,
+      209.18,
+      24.95,
+      289.78
+    ],
+    "norm_bbox": [
+      0,
+      490,
+      39,
+      679
+    ],
+    "width": 640,
+    "height": 427,
+    "distractors": "4",
+    "negation": false,
+    "human_authored": true,
+    "source": "coco_val2017"
+  },
+  {
+    "image": "static/images/demo/0006.jpg",
+    "caption": "child in second row from the bottom, third from left",
+    "bbox": [
+      77.0,
+      135.0,
+      117.0,
+      234.0
+    ],
+    "norm_bbox": [
+      154,
+      447,
+      234,
+      775
+    ],
+    "width": 500,
+    "height": 302,
+    "distractors": "5",
+    "negation": false,
+    "human_authored": true,
+    "source": "coco_val2017"
+  },
+  {
+    "image": "static/images/demo/0007.jpg",
+    "caption": "the ski pole held by the left hand of the person in the air",
+    "bbox": [
+      220.0,
+      117.0,
+      257.0,
+      167.0
+    ],
+    "norm_bbox": [
+      344,
+      274,
+      402,
+      391
+    ],
+    "width": 640,
+    "height": 427,
+    "distractors": "3",
+    "negation": false,
+    "human_authored": true,
+    "source": "coco_val2017"
+  },
+  {
+    "image": "static/images/demo/0008.jpg",
+    "caption": "the shoes worn by the person crossing feet",
+    "bbox": [
+      524.0,
+      370.0,
+      634.0,
+      438.0
+    ],
+    "norm_bbox": [
+      818,
+      666,
+      990,
+      789
+    ],
+    "width": 640,
+    "height": 555,
+    "distractors": "5",
+    "negation": false,
+    "human_authored": true,
+    "source": "coco_val2017"
+  },
+  {
+    "image": "static/images/demo/0009.jpg",
+    "caption": "the man closest to the photo on the window",
+    "bbox": [
+      297.0,
+      133.0,
+      326.0,
+      221.0
+    ],
+    "norm_bbox": [
+      792,
+      266,
+      869,
+      442
+    ],
+    "width": 375,
+    "height": 500,
+    "distractors": "4",
+    "negation": false,
+    "human_authored": true,
+    "source": "coco_val2017"
+  },
+  {
+    "image": "static/images/demo/0014.jpg",
+    "caption": "the upside-down glass that are not in pair with others",
+    "bbox": [
+      402.0,
+      187.0,
+      445.0,
+      292.0
+    ],
+    "norm_bbox": [
+      628,
+      437,
+      695,
+      683
+    ],
+    "width": 640,
+    "height": 427,
+    "distractors": "3",
+    "negation": true,
+    "human_authored": true,
+    "source": "coco_val2017"
+  },
+  {
+    "image": "static/images/demo/0016.jpg",
+    "caption": "the person outside the fence who is not sitting",
+    "bbox": [
+      128.0,
+      32.0,
+      165.0,
+      145.0
+    ],
+    "norm_bbox": [
+      200,
+      75,
+      258,
+      340
+    ],
+    "width": 640,
+    "height": 427,
+    "distractors": "5",
+    "negation": true,
+    "human_authored": true,
+    "source": "coco_val2017"
+  },
+  {
+    "image": "static/images/demo/0017.jpg",
+    "caption": "the person on the surfboard which is not pink nor yellow",
+    "bbox": [
+      45.0,
+      284.0,
+      160.0,
+      394.0
+    ],
+    "norm_bbox": [
+      70,
+      665,
+      250,
+      923
+    ],
+    "width": 640,
+    "height": 427,
+    "distractors": "5",
+    "negation": true,
+    "human_authored": true,
+    "source": "coco_val2017"
+  },
+  {
+    "image": "static/images/demo/0022.jpg",
+    "caption": "person holding up a frisbee and not wearing a bag",
+    "bbox": [
+      8.0,
+      27.0,
+      207.0,
+      475.0
+    ],
+    "norm_bbox": [
+      13,
+      56,
+      323,
+      990
+    ],
+    "width": 640,
+    "height": 480,
+    "distractors": "4",
+    "negation": true,
+    "human_authored": true,
+    "source": "coco_val2017"
+  },
+  {
+    "image": "static/images/demo/0095.jpg",
+    "caption": "a person on the foreground who is neither standing, sitting, walking, nor skateboarding",
+    "bbox": [
+      257.85,
+      224.48,
+      301.98,
+      321.48
+    ],
+    "norm_bbox": [
+      403,
+      468,
+      472,
+      670
+    ],
+    "width": 640,
+    "height": 480,
+    "distractors": "13",
+    "negation": true,
+    "human_authored": true,
+    "source": "coco_val2017"
+  },
+  {
+    "image": "static/images/demo/0100.jpg",
+    "caption": "the bus driving toward the camera without green nor red on its body",
+    "bbox": [
+      362.04,
+      118.05,
+      424.51,
+      194.73000000000002
+    ],
+    "norm_bbox": [
+      566,
+      276,
+      663,
+      455
+    ],
+    "width": 640,
+    "height": 428,
+    "distractors": "13",
+    "negation": true,
+    "human_authored": true,
+    "source": "coco_val2017"
+  },
+  {
+    "image": "static/images/demo/0107.jpg",
+    "caption": "the person wearing a red shirt and not wearing a hat",
+    "bbox": [
+      614.54,
+      143.23,
+      640.0,
+      206.35999999999999
+    ],
+    "norm_bbox": [
+      960,
+      335,
+      1000,
+      483
+    ],
+    "width": 640,
+    "height": 427,
+    "distractors": "13",
+    "negation": true,
+    "human_authored": true,
+    "source": "coco_val2017"
+  },
+  {
+    "image": "static/images/demo/0115.jpg",
+    "caption": "the yellow taxi that is not on the slope next to a bus",
+    "bbox": [
+      412.46,
+      107.39,
+      471.75,
+      156.45
+    ],
+    "norm_bbox": [
+      644,
+      251,
+      737,
+      366
+    ],
+    "width": 640,
+    "height": 427,
+    "distractors": "13",
+    "negation": true,
+    "human_authored": true,
+    "source": "coco_val2017"
+  },
+  {
+    "image": "static/images/demo/0121.jpg",
+    "caption": "the girl next to the man wearing backpack pointing somewhere, on the stairs",
+    "bbox": [
+      41.32,
+      53.59,
+      76.08,
+      113.12
+    ],
+    "norm_bbox": [
+      98,
+      84,
+      181,
+      177
+    ],
+    "width": 421,
+    "height": 640,
+    "distractors": "13",
+    "negation": false,
+    "human_authored": true,
+    "source": "coco_val2017"
+  },
+  {
+    "image": "static/images/demo/0188.jpg",
+    "caption": "the person in a white top carrying a bag",
+    "bbox": [
+      141.0,
+      126.0,
+      160.0,
+      180.0
+    ],
+    "norm_bbox": [
+      220,
+      263,
+      250,
+      375
+    ],
+    "width": 640,
+    "height": 480,
+    "distractors": "23",
+    "negation": false,
+    "human_authored": true,
+    "source": "coco_val2017"
+  },
+  {
+    "image": "static/images/demo/0213.jpg",
+    "caption": "the person behind the lady in orange",
+    "bbox": [
+      425.0,
+      25.0,
+      506.0,
+      164.0
+    ],
+    "norm_bbox": [
+      664,
+      52,
+      791,
+      342
+    ],
+    "width": 640,
+    "height": 480,
+    "distractors": "14",
+    "negation": false,
+    "human_authored": true,
+    "source": "coco_val2017"
+  },
+  {
+    "image": "static/images/demo/0513.jpg",
+    "caption": "the sleeveless striped top",
+    "bbox": [
+      371.0,
+      89.0,
+      440.0,
+      233.0
+    ],
+    "norm_bbox": [
+      363,
+      114,
+      431,
+      297
+    ],
+    "width": 1024,
+    "height": 786,
+    "distractors": "5",
+    "negation": false,
+    "human_authored": false,
+    "source": "openimages"
+  },
+  {
+    "image": "static/images/demo/0613.jpg",
+    "caption": "the standing woman not in dark clothing",
+    "bbox": [
+      523.0,
+      448.0,
+      559.0,
+      533.0
+    ],
+    "norm_bbox": [
+      768,
+      438,
+      820,
+      521
+    ],
+    "width": 682,
+    "height": 1024,
+    "distractors": "3",
+    "negation": true,
+    "human_authored": false,
+    "source": "openimages"
+  },
+  {
+    "image": "static/images/demo/0614.jpg",
+    "caption": "the red onion with uniformly deep purple skin among the two on the left",
+    "bbox": [
+      311.0,
+      207.0,
+      494.0,
+      415.0
+    ],
+    "norm_bbox": [
+      304,
+      303,
+      483,
+      607
+    ],
+    "width": 1024,
+    "height": 685,
+    "distractors": "2",
+    "negation": false,
+    "human_authored": false,
+    "source": "openimages"
+  },
+  {
+    "image": "static/images/demo/0618.jpg",
+    "caption": "the background out-of-focus attendee, not the one with a partially obscured face by downward angle",
+    "bbox": [
+      0.0,
+      68.0,
+      276.0,
+      701.0
+    ],
+    "norm_bbox": [
+      0,
+      84,
+      270,
+      857
+    ],
+    "width": 1024,
+    "height": 819,
+    "distractors": "2",
+    "negation": true,
+    "human_authored": false,
+    "source": "openimages"
+  },
+  {
+    "image": "static/images/demo/0736.jpg",
+    "caption": "the beer being held in someone\u2019s hands in the middle of the crowd, held lower near the holder\u2019s waist",
+    "bbox": [
+      391.0,
+      439.0,
+      430.0,
+      474.0
+    ],
+    "norm_bbox": [
+      382,
+      643,
+      420,
+      695
+    ],
+    "width": 1024,
+    "height": 683,
+    "distractors": "2",
+    "negation": false,
+    "human_authored": false,
+    "source": "openimages"
+  },
+  {
+    "image": "static/images/demo/0748.jpg",
+    "caption": "the person who is not the foreground lead performer or holding a prominent instrument in the foreground and whose collar is clearly visible",
+    "bbox": [
+      227.0,
+      202.0,
+      426.0,
+      587.0
+    ],
+    "norm_bbox": [
+      222,
+      298,
+      417,
+      864
+    ],
+    "width": 1024,
+    "height": 680,
+    "distractors": "4",
+    "negation": true,
+    "human_authored": false,
+    "source": "openimages"
+  },
+  {
+    "image": "static/images/demo/0750.jpg",
+    "caption": "the athletic shorts that end higher above the knee",
+    "bbox": [
+      727.0,
+      190.0,
+      785.0,
+      224.0
+    ],
+    "norm_bbox": [
+      710,
+      248,
+      767,
+      292
+    ],
+    "width": 1024,
+    "height": 768,
+    "distractors": "2",
+    "negation": false,
+    "human_authored": false,
+    "source": "openimages"
+  },
+  {
+    "image": "static/images/demo/0771.jpg",
+    "caption": "the silver laptop at the left of the image with the screen clearly visible",
+    "bbox": [
+      0.0,
+      545.0,
+      230.0,
+      767.0
+    ],
+    "norm_bbox": [
+      0,
+      710,
+      225,
+      999
+    ],
+    "width": 1024,
+    "height": 768,
+    "distractors": "3",
+    "negation": false,
+    "human_authored": false,
+    "source": "openimages"
+  },
+  {
+    "image": "static/images/demo/0840.jpg",
+    "caption": "the small background person inside the seating area who appears slightly lower in the frame",
+    "bbox": [
+      343.0,
+      140.0,
+      366.0,
+      185.0
+    ],
+    "norm_bbox": [
+      336,
+      244,
+      358,
+      322
+    ],
+    "width": 1024,
+    "height": 576,
+    "distractors": "3",
+    "negation": false,
+    "human_authored": false,
+    "source": "openimages"
+  },
+  {
+    "image": "static/images/demo/0852.jpg",
+    "caption": "the person who sits slightly more to the right within the left-side balcony area",
+    "bbox": [
+      362.0,
+      222.0,
+      378.0,
+      254.0
+    ],
+    "norm_bbox": [
+      354,
+      538,
+      370,
+      617
+    ],
+    "width": 1024,
+    "height": 413,
+    "distractors": "2",
+    "negation": false,
+    "human_authored": false,
+    "source": "openimages"
+  },
+  {
+    "image": "static/images/demo/0887.jpg",
+    "caption": "the skyline-dominating tower left of the larger stack",
+    "bbox": [
+      135.0,
+      46.0,
+      160.0,
+      207.0
+    ],
+    "norm_bbox": [
+      132,
+      68,
+      156,
+      304
+    ],
+    "width": 1024,
+    "height": 683,
+    "distractors": "2",
+    "negation": false,
+    "human_authored": false,
+    "source": "openimages"
+  },
+  {
+    "image": "static/images/demo/1032.jpg",
+    "caption": "the rounder eye opening with a more centered pupil",
+    "bbox": [
+      278.0,
+      233.0,
+      371.0,
+      289.0
+    ],
+    "norm_bbox": [
+      272,
+      275,
+      363,
+      341
+    ],
+    "width": 1024,
+    "height": 850,
+    "distractors": "3",
+    "negation": false,
+    "human_authored": false,
+    "source": "openimages"
+  }
+]
